@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +40,7 @@ class MyHomePage extends StatelessWidget {
         amount: 50,
         date: DateTime.now()
     ),
+
   ];
 
   @override
@@ -61,23 +63,38 @@ class MyHomePage extends StatelessWidget {
 
 
           Column(children: transactions.map((tx) {
-            return Card(child:
-                Row (children: [
+            return Card(
+                child: Row (
+                  children: [
                   Container(
-                    child: Text(tx.amount.toString(),
+                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 3
+                      ),
                     ),
-                  ),
+                    padding: EdgeInsets.all(10),
+                    child: Text(tx.amount.toString(),
+                    ),),
                   Column(
                     children: [
-                    Text(tx.title),
+                    Text(tx.title,
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.deepOrange,
+                      ),
+                      
+                    ),
                     Text(
-                      tx.date.toString(),
+                      DateFormat().format(tx.date),
+                      style: TextStyle(
+                        color: Colors.blueGrey,
+                      ),
                     )
                   ],)
                 ],)
-
             );
           }).toList(),),
+            
         ],
         ),
       ),
