@@ -20,29 +20,11 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-
   final List<Transaction> transactions = [
-  Transaction(
-    id: '1',
-  title: 'New Shoes',
-    amount: 69,
-    date: DateTime.now()
-  ),
-    Transaction(
-        id: '2',
-        title: 'socks',
-        amount: 10,
-        date: DateTime.now()
-    ),
-    Transaction(
-        id: '3',
-        title: 'slip-ons',
-        amount: 50,
-        date: DateTime.now()
-    ),
-
+    Transaction(id: '1', title: 'New Shoes', amount: 69, date: DateTime.now()),
+    Transaction(id: '2', title: 'socks', amount: 10, date: DateTime.now()),
+    Transaction(id: '3', title: 'slip-ons', amount: 50, date: DateTime.now()),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,51 +33,76 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Container(
         child: Column(
-          children:<Widget> [
-          Card(
-            color: Colors.amber,
-            child: Container(
-              child: Text("chart!"),
-              width: 100,
+          children: <Widget>[
+            Card(
+              color: Colors.amber,
+              child: Container(
+                child: Text("chart!"),
+                width: 100,
+              ),
+              elevation: 5,
             ),
-            elevation: 5,
-          ),
-
-
-          Column(children: transactions.map((tx) {
-            return Card(
-                child: Row (
+            Card(
+              elevation: 5,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
                   children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 3
-                      ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Title'),
                     ),
-                    padding: EdgeInsets.all(10),
-                    child: Text(tx.amount.toString(),
-                    ),),
-                  Column(
-                    children: [
-                    Text(tx.title,
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.deepOrange,
-                      ),
-                      
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Amount'),
                     ),
-                    Text(
-                      DateFormat().format(tx.date),
-                      style: TextStyle(
-                        color: Colors.blueGrey,
+                    TextButton(
+                      child: Text('Add'),
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.purpleAccent,
                       ),
+                      onPressed: () {},
                     )
-                  ],)
-                ],)
-            );
-          }).toList(),),
-            
-        ],
+                  ],
+                ),
+              ),
+            ),
+            Column(
+              children: transactions.map((tx) {
+                return Card(
+                    child: Row(
+                  children: [
+                    Container(
+                      margin:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 3),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        tx.amount.toString(),
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          tx.title,
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.deepOrange,
+                          ),
+                        ),
+                        Text(
+                          DateFormat().format(tx.date),
+                          style: TextStyle(
+                            color: Colors.blueGrey,
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ));
+              }).toList(),
+            ),
+          ],
         ),
       ),
     );
