@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterwidget/widgets/user_transaction.dart';
 
 class NewTransaction extends StatelessWidget {
   late String titleInput;

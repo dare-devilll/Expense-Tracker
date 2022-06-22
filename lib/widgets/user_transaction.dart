@@ -10,13 +10,15 @@ class UserTransactions extends StatelessWidget {
     Transaction(id: '3', title: 'slip-ons', amount: 50, date: DateTime.now()),
   ];
 
+  void _addNewTrasaction(String title, double amount) {}
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         NewTransaction(),
-        TransactionList(),
-      ],
+        TransactionList(_usertransactions),
+      ],  
     );
   }
 }
